@@ -11,24 +11,78 @@
     <header class="header">
       <h1>My Todos</h1>
       <p class="subtitle">Stay organized, get things done</p>
+      <div id="stats-bar" class="stats-bar">
+        <div class="stat">
+          <span id="stat-total" class="stat-value">0</span>
+          <span class="stat-label">Total</span>
+        </div>
+        <div class="stat">
+          <span id="stat-active" class="stat-value">0</span>
+          <span class="stat-label">Active</span>
+        </div>
+        <div class="stat">
+          <span id="stat-overdue" class="stat-value overdue">0</span>
+          <span class="stat-label">Overdue</span>
+        </div>
+        <div class="stat progress-stat">
+          <span id="stat-progress" class="stat-value">0%</span>
+          <span class="stat-label">Done</span>
+          <div class="progress-track">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
+        </div>
+      </div>
     </header>
 
     <form id="todo-form" class="todo-form" autocomplete="off">
-      <input
-        id="todo-input"
-        type="text"
-        placeholder="What needs to be done?"
-        maxlength="200"
-        required
-      />
-      <button type="submit" class="btn btn-primary">Add</button>
+      <div class="form-row">
+        <input
+          id="todo-input"
+          type="text"
+          placeholder="What needs to be done?"
+          maxlength="200"
+          required
+        />
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+      <div class="form-options">
+        <select id="priority-input" class="form-select" title="Priority">
+          <option value="low">Low priority</option>
+          <option value="medium" selected>Medium priority</option>
+          <option value="high">High priority</option>
+        </select>
+        <input
+          id="category-input"
+          type="text"
+          class="form-input-sm"
+          placeholder="Category (e.g. Work)"
+          maxlength="30"
+        />
+        <input id="duedate-input" type="date" class="form-input-sm" title="Due date" />
+      </div>
     </form>
+
+    <div class="search-bar">
+      <input
+        id="search-input"
+        type="search"
+        placeholder="Search todos..."
+        maxlength="100"
+      />
+      <select id="sort-select" class="form-select" title="Sort by">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="priority">Priority</option>
+        <option value="dueDate">Due date</option>
+      </select>
+    </div>
 
     <div class="toolbar">
       <div class="filters">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="active">Active</button>
         <button class="filter-btn" data-filter="completed">Completed</button>
+        <button class="filter-btn" data-filter="overdue">Overdue</button>
       </div>
       <span id="todo-count" class="todo-count">0 items left</span>
     </div>
@@ -38,12 +92,12 @@
     <div id="empty-state" class="empty-state hidden">
       <div class="empty-icon">✓</div>
       <p>No todos yet. Add one above!</p>
+      <p>No todos yet. Add one above!</p>
     </div>
 
     <footer class="footer">
-      <button id="clear-completed" class="btn btn-ghost" disabled>
-        Clear completed
-      </button>
+      <button id="complete-all" class="btn btn-ghost" disabled>Mark all done</button>
+      <button id="clear-completed" class="btn btn-ghost" disabled>Clear completed</button>
     </footer>
   </div>
 

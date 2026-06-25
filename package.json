@@ -6,12 +6,15 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "test": "Test Done with No test"
+    "test": "node --test test/server.test.js"
   },
   "keywords": ["todo", "nodejs", "express"],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.0"
   }
 }
