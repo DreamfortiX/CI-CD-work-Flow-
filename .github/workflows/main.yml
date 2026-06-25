@@ -1,14 +1,11 @@
 name: FirstCI/CD
-
 on:
   push:
     branches:
       - main
-
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -23,3 +20,21 @@ jobs:
 
       - name: Run Tests
         run: npm test
+
+  deploy:
+    needs: build_and_test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/todo-app
+            git config pull.rebase false
+            git checkout main
+            git pull origin main
+            npm install
+            pm2 restart todo-app || pm2 start server.js --name todo-app
