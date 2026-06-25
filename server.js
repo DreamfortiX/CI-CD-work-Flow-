@@ -4,7 +4,7 @@ const fs = require("fs");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const DATA_FILE = path.join(__dirname, "todos.json");
+const DATA_FILE = process.env.TODO_DATA_FILE || path.join(__dirname, "todos.json");
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
@@ -92,6 +92,7 @@ app.delete("/api/todos", (_req, res) => {
   res.json(todos);
 });
 
+if (require.main === module) {
 const server = app.listen(PORT, () => {
   console.log(`Todo app running at http://localhost:${PORT}`);
 });
@@ -105,3 +106,6 @@ server.on("error", (err) => {
   }
   throw err;
 });
+}
+
+module.exports = app;
