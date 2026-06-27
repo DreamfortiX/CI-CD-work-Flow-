@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - master
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
@@ -32,7 +33,9 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            mkdir todo-app
             cd ~/todo-app
+            git init
             git config pull.rebase false
             git checkout main
             git pull origin main
