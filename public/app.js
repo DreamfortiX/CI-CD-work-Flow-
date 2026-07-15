@@ -116,7 +116,7 @@ function createTodoElement(todo) {
   return li;
 }
 
-function startEdit(id, textSpan, li) {
+function startEdit(id, textSpan, _li) {
   if (editingId !== null) return;
   editingId = id;
 

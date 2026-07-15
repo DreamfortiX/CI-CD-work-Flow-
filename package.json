@@ -6,12 +6,21 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "test": "echo \"No tests yet\""
+    "test": "echo \"No tests yet\"",
+    "lint": "eslint server.js public/",
+    "lint:fix": "eslint server.js public/ --fix"
   },
-  "keywords": ["todo", "nodejs", "express"],
+  "keywords": [
+    "todo",
+    "nodejs",
+    "express"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0"
   }
 }
